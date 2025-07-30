@@ -57,8 +57,8 @@ export const SurfSpotCard = ({ spot, onViewDetails }: SurfSpotCardProps) => {
         </p>
 
         <div className="flex flex-wrap gap-2">
-          <Badge variant="secondary" className={getConditionColor(spot.surfCondition)}>
-            {spot.surfCondition}
+          <Badge variant="secondary" className={getConditionColor(spot.conditions.surfCondition)}>
+            {spot.conditions.surfCondition}
           </Badge>
           <Badge variant="outline" className={getDifficultyColor(spot.difficulty)}>
             {spot.difficulty}
@@ -73,15 +73,39 @@ export const SurfSpotCard = ({ spot, onViewDetails }: SurfSpotCardProps) => {
             <Waves className="h-4 w-4 text-primary" />
             <div>
               <p className="text-xs text-muted-foreground">Wave Height</p>
-              <p className="font-semibold text-sm">{spot.waveHeight}</p>
+              <p className="font-semibold text-sm">{spot.conditions.waveHeight}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Wind className="h-4 w-4 text-primary" />
             <div>
               <p className="text-xs text-muted-foreground">Wind</p>
-              <p className="font-semibold text-sm">{spot.windSpeed} {spot.windDirection}</p>
+              <p className="font-semibold text-sm">{spot.conditions.windSpeed} {spot.conditions.windDirection}</p>
             </div>
+          </div>
+        </div>
+
+        {/* New tide information */}
+        <div className="bg-muted/30 rounded-lg p-3 space-y-2">
+          <div className="flex justify-between items-center text-sm">
+            <span className="text-muted-foreground">Tide:</span>
+            <span className="font-medium">{spot.conditions.tide.currentTide} {spot.conditions.tide.tideDirection}</span>
+          </div>
+          <div className="flex justify-between items-center text-sm">
+            <span className="text-muted-foreground">Next {spot.conditions.tide.nextTide}:</span>
+            <span className="font-medium">{spot.conditions.tide.nextTideTime}</span>
+          </div>
+          <div className="text-xs text-muted-foreground">
+            Best: {spot.conditions.bestTidePhase.join(', ')}
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="flex-1 bg-background rounded-full h-2">
+              <div 
+                className="bg-primary h-2 rounded-full transition-all duration-300" 
+                style={{ width: `${spot.conditions.currentRating * 10}%` }}
+              ></div>
+            </div>
+            <span className="text-xs font-medium">{spot.conditions.currentRating}/10</span>
           </div>
         </div>
 

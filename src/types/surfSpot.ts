@@ -1,3 +1,24 @@
+export interface TideInfo {
+  currentTide: 'High' | 'Mid' | 'Low';
+  nextTide: 'High' | 'Low';
+  nextTideTime: string;
+  tideDirection: 'Incoming' | 'Outgoing';
+  tideHeight: string;
+}
+
+export interface SurfConditions {
+  waveHeight: string;
+  windSpeed: string;
+  windDirection: string;
+  surfCondition: 'Poor' | 'Fair' | 'Good' | 'Excellent';
+  swellDirection: string;
+  period: string;
+  waterTemp: string;
+  tide: TideInfo;
+  bestTidePhase: string[];
+  currentRating: number; // 1-10 current conditions rating
+}
+
 export interface SurfSpot {
   id: string;
   name: string;
@@ -7,10 +28,7 @@ export interface SurfSpot {
     lat: number;
     lng: number;
   };
-  waveHeight: string;
-  windSpeed: string;
-  windDirection: string;
-  surfCondition: 'Poor' | 'Fair' | 'Good' | 'Excellent';
+  conditions: SurfConditions;
   webcamUrl?: string;
   imageUrl: string;
   popularity: number; // 1-5 rating

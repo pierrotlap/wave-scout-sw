@@ -20,7 +20,7 @@ const Index = () => {
                          spot.description.toLowerCase().includes(searchQuery.toLowerCase());
     
     const matchesDifficulty = selectedDifficulty === 'all' || spot.difficulty === selectedDifficulty;
-    const matchesCondition = selectedCondition === 'all' || spot.surfCondition === selectedCondition;
+    const matchesCondition = selectedCondition === 'all' || spot.conditions.surfCondition === selectedCondition;
     
     return matchesSearch && matchesDifficulty && matchesCondition;
   });

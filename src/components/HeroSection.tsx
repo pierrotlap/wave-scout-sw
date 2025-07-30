@@ -37,10 +37,10 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
           <h1 className="text-5xl md:text-7xl font-bold text-primary-foreground mb-4">
             Southwest France
           </h1>
-          <h2 className="text-2xl md:text-3xl text-primary-foreground/90 mb-6">
+          <h2 className="text-2xl md:text-3xl text-primary-foreground/95 mb-6 font-semibold">
             Surf Spots Guide
           </h2>
-          <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto mb-8">
+          <p className="text-lg text-primary-foreground/90 max-w-2xl mx-auto mb-8 bg-black/20 backdrop-blur-sm rounded-lg p-4 border border-white/20">
             Discover the most epic surf spots from Hossegor to the Spanish border. 
             Live conditions, webcams, and local insights for the ultimate surf experience.
           </p>

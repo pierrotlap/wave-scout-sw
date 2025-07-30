@@ -70,8 +70,8 @@ export const SpotDetailsModal = ({ spot, isOpen, onClose }: SpotDetailsModalProp
               </span>
             </div>
             <div className="flex gap-2">
-              <Badge className={getConditionColor(spot.surfCondition)}>
-                {spot.surfCondition}
+              <Badge className={getConditionColor(spot.conditions.surfCondition)}>
+                {spot.conditions.surfCondition}
               </Badge>
               <Badge variant="outline" className={getDifficultyColor(spot.difficulty)}>
                 {spot.difficulty}
@@ -100,28 +100,59 @@ export const SpotDetailsModal = ({ spot, isOpen, onClose }: SpotDetailsModalProp
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <div className="text-center p-3 bg-muted/50 rounded-lg">
                   <Waves className="h-6 w-6 mx-auto text-primary mb-2" />
                   <p className="text-xs text-muted-foreground">Wave Height</p>
-                  <p className="font-bold">{spot.waveHeight}</p>
+                  <p className="font-bold">{spot.conditions.waveHeight}</p>
                 </div>
                 <div className="text-center p-3 bg-muted/50 rounded-lg">
                   <Wind className="h-6 w-6 mx-auto text-primary mb-2" />
                   <p className="text-xs text-muted-foreground">Wind</p>
-                  <p className="font-bold">{spot.windSpeed}</p>
-                  <p className="text-xs">{spot.windDirection}</p>
+                  <p className="font-bold">{spot.conditions.windSpeed}</p>
+                  <p className="text-xs">{spot.conditions.windDirection}</p>
                 </div>
                 <div className="text-center p-3 bg-muted/50 rounded-lg">
                   <Thermometer className="h-6 w-6 mx-auto text-primary mb-2" />
                   <p className="text-xs text-muted-foreground">Water Temp</p>
-                  <p className="font-bold">16°C</p>
+                  <p className="font-bold">{spot.conditions.waterTemp}</p>
                 </div>
                 <div className="text-center p-3 bg-muted/50 rounded-lg">
                   <Navigation className="h-6 w-6 mx-auto text-primary mb-2" />
                   <p className="text-xs text-muted-foreground">Swell</p>
-                  <p className="font-bold">W</p>
-                  <p className="text-xs">12s period</p>
+                  <p className="font-bold">{spot.conditions.swellDirection}</p>
+                  <p className="text-xs">{spot.conditions.period}</p>
+                </div>
+                <div className="text-center p-3 bg-muted/50 rounded-lg">
+                  <Clock className="h-6 w-6 mx-auto text-primary mb-2" />
+                  <p className="text-xs text-muted-foreground">Current Tide</p>
+                  <p className="font-bold">{spot.conditions.tide.currentTide}</p>
+                  <p className="text-xs">{spot.conditions.tide.tideDirection}</p>
+                </div>
+                <div className="text-center p-3 bg-muted/50 rounded-lg">
+                  <Clock className="h-6 w-6 mx-auto text-primary mb-2" />
+                  <p className="text-xs text-muted-foreground">Next {spot.conditions.tide.nextTide}</p>
+                  <p className="font-bold">{spot.conditions.tide.nextTideTime}</p>
+                  <p className="text-xs">{spot.conditions.tide.tideHeight}</p>
+                </div>
+              </div>
+              
+              {/* Current Rating */}
+              <div className="mt-4 p-3 bg-primary/10 rounded-lg">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium">Current Rating</span>
+                  <span className="text-lg font-bold text-primary">{spot.conditions.currentRating}/10</span>
+                </div>
+                <div className="w-full bg-background rounded-full h-3">
+                  <div 
+                    className="bg-gradient-ocean h-3 rounded-full transition-all duration-500" 
+                    style={{ width: `${spot.conditions.currentRating * 10}%` }}
+                  ></div>
+                </div>
+                <div className="mt-2">
+                  <p className="text-xs text-muted-foreground">
+                    <strong>Best Times:</strong> {spot.conditions.bestTidePhase.join(', ')}
+                  </p>
                 </div>
               </div>
             </CardContent>
